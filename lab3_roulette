@@ -9,7 +9,6 @@ def fitness_func(solution):
     y = solution[1]
 
     objective_max = (3*(x**2 - y)**2 + (100+x)**2 + (y-x))
-    # objective_max = x**2-y
     return objective_max
 
 
@@ -18,10 +17,10 @@ bounds = [[0, 31], [0, 31]]  # X, Y
 # bounds = [[-4, 4], [-4, 4]]  # X, Y
 no_generation = 500
 pop_size = 10                # no. of chromosomes
-genes = 5
-no_mating = pop_size//2
-crossover_rate = 0.7
-mutation_rate = 0.1
+genes = 5                    # no. of genes (No. of bits) from 0 to 31
+no_mating = pop_size//2      # no. of mating produced from selection
+crossover_rate = 0.7         # Crossover rate
+mutation_rate = 0.1          # Mutation rate
 
 
 # -----------------------------------------------------------
@@ -109,7 +108,7 @@ def mutation(pop, mutation_rate):
 def run_ga():
     # Initial population
     pop = [randint(0, 2, genes*len(bounds)).tolist() for _ in range(pop_size)]
-
+    print(f"Initial Population: {pop}")
     # Best fitness each generation
     best_fitness = []
     best_solution = []
